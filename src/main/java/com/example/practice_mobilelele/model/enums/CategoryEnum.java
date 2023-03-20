@@ -5,6 +5,6 @@ public enum CategoryEnum {
     Car,
     Buss,
     Truck,
-    Motorcycl
+    Motorcycle
 
 }
