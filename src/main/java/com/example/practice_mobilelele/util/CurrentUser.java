@@ -1,6 +1,7 @@
 package com.example.practice_mobilelele.util;
 
 import com.example.practice_mobilelele.model.entity.Role;
+import com.example.practice_mobilelele.model.enums.RoleEnum;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.SessionScope;
 
@@ -55,5 +56,16 @@ public class CurrentUser {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+
+    public boolean isAdmin() {
+
+        return role != null && role.getRole().equals(RoleEnum.Admin);
+    }
+
+    public boolean isLogedIn() {
+
+        return id != null;
     }
 }

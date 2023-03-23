@@ -22,7 +22,6 @@ public class UserServiceImpl implements UserService {
 
         boolean userExists = userRepository.existsByUsernameAndPassword(username, password);
 
-
         if (userExists) {
 
             User user = userRepository.findByUsername(username);
@@ -34,5 +33,15 @@ public class UserServiceImpl implements UserService {
         }
 
         return userExists;
+    }
+
+    @Override
+    public void logout() {
+
+        currentUser.setId(null);
+        currentUser.setFirstName(null);
+        currentUser.setLastName(null);
+        currentUser.setUsername(null);
+        currentUser.setRole(null);
     }
 }
