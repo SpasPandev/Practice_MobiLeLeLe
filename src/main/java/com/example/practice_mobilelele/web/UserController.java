@@ -1,11 +1,13 @@
 package com.example.practice_mobilelele.web;
 
 import com.example.practice_mobilelele.model.binding.UserLoginBindinModel;
+import com.example.practice_mobilelele.model.binding.UserRegisterBindingModel;
 import com.example.practice_mobilelele.service.UserService;
 import com.example.practice_mobilelele.util.CurrentUser;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
@@ -13,6 +15,11 @@ public class UserController {
 
     private final UserService userService;
     private final CurrentUser currentUser;
+
+    @ModelAttribute
+    public UserRegisterBindingModel userRegisterBindingModel() {
+        return new UserRegisterBindingModel();
+    }
 
     public UserController(UserService userService, CurrentUser currentUser) {
         this.userService = userService;
@@ -48,4 +55,17 @@ public class UserController {
         return "redirect:/";
     }
 
+    @GetMapping("/users/register")
+    public String register() {
+
+        return "auth-register";
+    }
+
+    @PostMapping("/users/register")
+    public String register(UserRegisterBindingModel userRegisterBindingModel) {
+
+        userService.registerUser(userRegisterBindingModel);
+
+        return "redirect:/users/login";
+    }
 }
