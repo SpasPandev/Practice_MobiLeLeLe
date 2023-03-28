@@ -1,10 +1,16 @@
 package com.example.practice_mobilelele.model.binding;
 
+import jakarta.validation.constraints.NotBlank;
+
 public class UserRegisterBindingModel {
 
+    @NotBlank
     private String firstName;
+    @NotBlank
     private String lastName;
+    @NotBlank
     private String username;
+    @NotBlank
     private String password;
 
     public UserRegisterBindingModel() {
