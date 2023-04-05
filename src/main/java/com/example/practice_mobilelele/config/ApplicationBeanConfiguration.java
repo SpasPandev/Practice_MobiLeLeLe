@@ -1,13 +1,10 @@
 package com.example.practice_mobilelele.config;
 
-import com.example.practice_mobilelele.model.entity.User;
-import com.example.practice_mobilelele.util.CurrentUser;
-import org.modelmapper.Converter;
 import org.modelmapper.ModelMapper;
-import org.modelmapper.TypeMap;
-import org.modelmapper.spi.MappingContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
 
 @Configuration
 public class ApplicationBeanConfiguration {
@@ -16,5 +13,10 @@ public class ApplicationBeanConfiguration {
     public ModelMapper modelMapper() {
 
         return new ModelMapper();
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new Pbkdf2PasswordEncoder();
     }
 }
