@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "odders")
+@Table(name = "offers")
 public class Offer extends BaseEntity{
 
     private String description;
