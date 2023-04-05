@@ -30,7 +30,7 @@ public class Model extends BaseEntity {
         this.name = name;
     }
 
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     public CategoryEnum getCategory() {
         return category;
     }

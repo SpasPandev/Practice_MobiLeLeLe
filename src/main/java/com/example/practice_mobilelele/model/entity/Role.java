@@ -2,6 +2,7 @@ package com.example.practice_mobilelele.model.entity;
 
 import com.example.practice_mobilelele.model.enums.RoleEnum;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.Table;
 
@@ -14,7 +15,7 @@ public class Role extends BaseEntity {
     public Role() {
     }
 
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     public RoleEnum getRole() {
         return name;
     }

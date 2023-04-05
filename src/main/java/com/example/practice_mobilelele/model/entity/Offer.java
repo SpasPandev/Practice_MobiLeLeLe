@@ -1,7 +1,7 @@
 package com.example.practice_mobilelele.model.entity;
 
 import com.example.practice_mobilelele.model.enums.EngineEnum;
-import com.example.practice_mobilelele.model.enums.TransmisionEnum;
+import com.example.practice_mobilelele.model.enums.TransmissionEnum;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
@@ -16,7 +16,7 @@ public class Offer extends BaseEntity{
     private String imageUrl;
     private Integer mileage;
     private BigDecimal price;
-    private TransmisionEnum transmision;
+    private TransmissionEnum transmission;
     private Integer year;
     private LocalDate created;
     private LocalDate modified;
@@ -35,7 +35,7 @@ public class Offer extends BaseEntity{
         this.description = description;
     }
 
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     public EngineEnum getEngine() {
         return engine;
     }
@@ -71,13 +71,13 @@ public class Offer extends BaseEntity{
         this.price = price;
     }
 
-    @Enumerated
-    public TransmisionEnum getTransmision() {
-        return transmision;
+    @Enumerated(EnumType.STRING)
+    public TransmissionEnum getTransmission() {
+        return transmission;
     }
 
-    public void setTransmision(TransmisionEnum transmision) {
-        this.transmision = transmision;
+    public void setTransmission(TransmissionEnum transmission) {
+        this.transmission = transmission;
     }
 
     @Column
