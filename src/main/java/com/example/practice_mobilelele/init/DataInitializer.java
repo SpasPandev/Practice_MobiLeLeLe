@@ -61,7 +61,8 @@ public class DataInitializer implements CommandLineRunner {
             userAdmin.setFirstName("adminF");
             userAdmin.setLastName("adminL");
             userAdmin.setActive(true);
-            userAdmin.setCreated(LocalDate.now());
+            userAdmin.setCreated(LocalDate.parse("2022-11-23"));
+            userAdmin.setModified(LocalDate.parse("2023-04-06"));
             userAdmin.setRole(roleRepository.findByName(RoleEnum.Admin));
 
             User userTest = new User();
@@ -70,7 +71,8 @@ public class DataInitializer implements CommandLineRunner {
             userTest.setFirstName("testF");
             userTest.setLastName("testL");
             userTest.setActive(true);
-            userTest.setCreated(LocalDate.now());
+            userTest.setCreated(LocalDate.parse("2022-11-23"));
+            userTest.setModified(LocalDate.parse("2023-04-06"));
             userTest.setRole(roleRepository.findByName(RoleEnum.User));
 
             userRepository.saveAll(List.of(userAdmin, userTest));
@@ -80,7 +82,8 @@ public class DataInitializer implements CommandLineRunner {
 
             Brand brand = new Brand();
             brand.setName("Ford");
-            brand.setCreated(LocalDate.now());
+            brand.setCreated(LocalDate.parse("2022-11-23"));
+            brand.setModified(LocalDate.parse("2023-04-06"));
 
             brandRepository.save(brand);
         }
@@ -92,8 +95,10 @@ public class DataInitializer implements CommandLineRunner {
             fiesta.setCategory(CategoryEnum.Car);
             fiesta.setImageUrl("https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/2017_Ford_Fiesta_Zetec_Turbo_1.0_Front.jpg/1920px-2017_Ford_Fiesta_Zetec_Turbo_1.0_Front.jpg");
             fiesta.setStartYear(1976);
+            fiesta.setEndYear(1999);
             fiesta.setBrand(brandRepository.findByName("Ford"));
-            fiesta.setCreated(LocalDate.now());
+            fiesta.setCreated(LocalDate.parse("2022-11-23"));
+            fiesta.setModified(LocalDate.parse("2023-04-06"));
 
             Model escort = new Model();
             escort.setName("Escort");
@@ -102,7 +107,8 @@ public class DataInitializer implements CommandLineRunner {
             escort.setStartYear(1967);
             escort.setEndYear(2004);
             escort.setBrand(brandRepository.findByName("Ford"));
-            escort.setCreated(LocalDate.now());
+            escort.setCreated(LocalDate.parse("2022-11-23"));
+            escort.setModified(LocalDate.parse("2023-04-06"));
 
             modelRepository.saveAll(List.of(fiesta, escort));
         }
@@ -117,7 +123,8 @@ public class DataInitializer implements CommandLineRunner {
             offer1.setPrice(BigDecimal.valueOf(14300));
             offer1.setTransmission(TransmissionEnum.MANUAL);
             offer1.setYear(2019);
-            offer1.setCreated(LocalDate.now());
+            offer1.setCreated(LocalDate.parse("2022-11-23"));
+            offer1.setModified(LocalDate.parse("2023-04-06"));
             offer1.setModel(modelRepository.findById(1L).orElse(null));
             offer1.setSeller(userRepository.findById(1L).orElse(null));
 
@@ -129,7 +136,8 @@ public class DataInitializer implements CommandLineRunner {
             offer2.setPrice(BigDecimal.valueOf(5500));
             offer2.setTransmission(TransmissionEnum.AUTOMATIC);
             offer2.setYear(2000);
-            offer2.setCreated(LocalDate.now());
+            offer2.setCreated(LocalDate.parse("2022-11-23"));
+            offer2.setModified(LocalDate.parse("2023-04-06"));
             offer2.setModel(modelRepository.findById(2L).orElse(null));
             offer2.setSeller(userRepository.findById(2L).orElse(null));
 
