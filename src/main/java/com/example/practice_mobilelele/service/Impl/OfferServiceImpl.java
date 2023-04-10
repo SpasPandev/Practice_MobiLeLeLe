@@ -50,4 +50,10 @@ public class OfferServiceImpl implements OfferService {
 
         offerRepository.save(offer);
     }
+
+    @Override
+    public void deleteOffer(Long id) {
+
+        offerRepository.deleteById(id);
+    }
 }

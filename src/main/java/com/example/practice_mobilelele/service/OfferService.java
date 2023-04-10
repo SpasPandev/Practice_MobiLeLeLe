@@ -13,4 +13,6 @@ public interface OfferService {
     OfferDetailsViewModel findById(Long id);
 
     void updateOffer(UpdateOfferServiceModel updateOfferServiceModel);
+
+    void deleteOffer(Long id);
 }

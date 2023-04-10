@@ -11,6 +11,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -80,5 +81,13 @@ public class OfferController {
         model.addAttribute("transmissions", TransmissionEnum.values());
 
         return "update";
+    }
+
+    @DeleteMapping("/offers/{id}/delete")
+    public String deleteOffer(@PathVariable Long id){
+
+        offerService.deleteOffer(id);
+
+        return "redirect:/offers/all";
     }
 }
