@@ -1,6 +1,8 @@
 package com.example.practice_mobilelele.service;
 
+import com.example.practice_mobilelele.model.binding.OfferAddBindingModel;
 import com.example.practice_mobilelele.model.entity.Offer;
+import com.example.practice_mobilelele.model.service.OfferAddServiceModel;
 import com.example.practice_mobilelele.model.service.UpdateOfferServiceModel;
 import com.example.practice_mobilelele.model.view.OfferDetailsViewModel;
 
@@ -15,4 +17,7 @@ public interface OfferService {
     void updateOffer(UpdateOfferServiceModel updateOfferServiceModel);
 
     void deleteOffer(Long id);
+
+
+    OfferAddServiceModel addOffer(OfferAddServiceModel offerAddServiceModel);
 }

@@ -1,10 +1,15 @@
 package com.example.practice_mobilelele.service.Impl;
 
+import com.example.practice_mobilelele.model.binding.OfferAddBindingModel;
 import com.example.practice_mobilelele.model.entity.Offer;
+import com.example.practice_mobilelele.model.service.OfferAddServiceModel;
 import com.example.practice_mobilelele.model.service.UpdateOfferServiceModel;
 import com.example.practice_mobilelele.model.view.OfferDetailsViewModel;
+import com.example.practice_mobilelele.repository.ModelRepository;
 import com.example.practice_mobilelele.repository.OfferRepository;
+import com.example.practice_mobilelele.repository.UserRepository;
 import com.example.practice_mobilelele.service.OfferService;
+import com.example.practice_mobilelele.util.CurrentUser;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -15,10 +20,16 @@ import java.util.List;
 public class OfferServiceImpl implements OfferService {
 
     private final OfferRepository offerRepository;
+    private final ModelRepository modelRepository;
+    private final UserRepository userRepository;
+    private final CurrentUser currentUser;
     private final ModelMapper modelMapper;
 
-    public OfferServiceImpl(OfferRepository offerRepository, ModelMapper modelMapper) {
+    public OfferServiceImpl(OfferRepository offerRepository, ModelRepository modelRepository, UserRepository userRepository, CurrentUser currentUser, ModelMapper modelMapper) {
         this.offerRepository = offerRepository;
+        this.modelRepository = modelRepository;
+        this.userRepository = userRepository;
+        this.currentUser = currentUser;
         this.modelMapper = modelMapper;
     }
 
@@ -55,5 +66,24 @@ public class OfferServiceImpl implements OfferService {
     public void deleteOffer(Long id) {
 
         offerRepository.deleteById(id);
+    }
+
+    @Override
+    public OfferAddServiceModel addOffer(OfferAddServiceModel offerAddServiceModel) {
+
+        Offer newOffer = new Offer();
+        newOffer.setDescription(offerAddServiceModel.getDescription());
+        newOffer.setEngine(offerAddServiceModel.getEngine());
+        newOffer.setImageUrl(offerAddServiceModel.getImageUrl());
+        newOffer.setMileage(offerAddServiceModel.getMileage());
+        newOffer.setPrice(offerAddServiceModel.getPrice());
+        newOffer.setTransmission(offerAddServiceModel.getTransmission());
+        newOffer.setYear(offerAddServiceModel.getYear());
+        newOffer.setCreated(LocalDate.now());
+        newOffer.setModified(LocalDate.now());
+        newOffer.setModel(modelRepository.findById(offerAddServiceModel.getModelId()).get());
+        newOffer.setSeller(userRepository.findById(currentUser.getId()).orElse(null));
+
+        return modelMapper.map(offerRepository.save(newOffer), OfferAddServiceModel.class);
     }
 }

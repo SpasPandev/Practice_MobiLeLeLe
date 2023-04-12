@@ -2,9 +2,11 @@ package com.example.practice_mobilelele.model.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "brands")
@@ -13,6 +15,7 @@ public class Brand extends BaseEntity {
     private String name;
     private LocalDate created;
     private LocalDate modified;
+    private List<Model> models;
 
     public Brand() {
     }
@@ -42,5 +45,14 @@ public class Brand extends BaseEntity {
 
     public void setModified(LocalDate modified) {
         this.modified = modified;
+    }
+
+    @OneToMany(mappedBy = "brand")
+    public List<Model> getModels() {
+        return models;
+    }
+
+    public void setModels(List<Model> models) {
+        this.models = models;
     }
 }
