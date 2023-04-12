@@ -4,18 +4,15 @@ import jakarta.validation.constraints.NotBlank;
 
 public class UserRegisterBindingModel {
 
-    @NotBlank
     private String firstName;
-    @NotBlank
     private String lastName;
-    @NotBlank
     private String username;
-    @NotBlank
     private String password;
 
     public UserRegisterBindingModel() {
     }
 
+    @NotBlank
     public String getFirstName() {
         return firstName;
     }
@@ -24,6 +21,7 @@ public class UserRegisterBindingModel {
         this.firstName = firstName;
     }
 
+    @NotBlank
     public String getLastName() {
         return lastName;
     }
@@ -32,6 +30,7 @@ public class UserRegisterBindingModel {
         this.lastName = lastName;
     }
 
+    @NotBlank
     public String getUsername() {
         return username;
     }
@@ -40,6 +39,7 @@ public class UserRegisterBindingModel {
         this.username = username;
     }
 
+    @NotBlank
     public String getPassword() {
         return password;
     }
