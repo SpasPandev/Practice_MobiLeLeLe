@@ -9,7 +9,6 @@ import com.example.practice_mobilelele.repository.ModelRepository;
 import com.example.practice_mobilelele.repository.OfferRepository;
 import com.example.practice_mobilelele.repository.UserRepository;
 import com.example.practice_mobilelele.service.OfferService;
-import com.example.practice_mobilelele.util.CurrentUser;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -22,14 +21,12 @@ public class OfferServiceImpl implements OfferService {
     private final OfferRepository offerRepository;
     private final ModelRepository modelRepository;
     private final UserRepository userRepository;
-    private final CurrentUser currentUser;
     private final ModelMapper modelMapper;
 
-    public OfferServiceImpl(OfferRepository offerRepository, ModelRepository modelRepository, UserRepository userRepository, CurrentUser currentUser, ModelMapper modelMapper) {
+    public OfferServiceImpl(OfferRepository offerRepository, ModelRepository modelRepository, UserRepository userRepository, ModelMapper modelMapper) {
         this.offerRepository = offerRepository;
         this.modelRepository = modelRepository;
         this.userRepository = userRepository;
-        this.currentUser = currentUser;
         this.modelMapper = modelMapper;
     }
 
@@ -82,7 +79,8 @@ public class OfferServiceImpl implements OfferService {
         newOffer.setCreated(LocalDate.now());
         newOffer.setModified(LocalDate.now());
         newOffer.setModel(modelRepository.findById(offerAddServiceModel.getModelId()).get());
-        newOffer.setSeller(userRepository.findById(currentUser.getId()).orElse(null));
+//        TODO
+//        newOffer.setSeller(userRepository.findById(currentUser.getId()).orElse(null));
 
         return modelMapper.map(offerRepository.save(newOffer), OfferAddServiceModel.class);
     }
