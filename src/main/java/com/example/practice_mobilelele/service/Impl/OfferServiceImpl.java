@@ -66,7 +66,7 @@ public class OfferServiceImpl implements OfferService {
     }
 
     @Override
-    public OfferAddServiceModel addOffer(OfferAddServiceModel offerAddServiceModel) {
+    public OfferAddServiceModel addOffer(OfferAddServiceModel offerAddServiceModel, Long ownerId) {
 
         Offer newOffer = new Offer();
         newOffer.setDescription(offerAddServiceModel.getDescription());
@@ -79,8 +79,7 @@ public class OfferServiceImpl implements OfferService {
         newOffer.setCreated(LocalDate.now());
         newOffer.setModified(LocalDate.now());
         newOffer.setModel(modelRepository.findById(offerAddServiceModel.getModelId()).get());
-//        TODO
-//        newOffer.setSeller(userRepository.findById(currentUser.getId()).orElse(null));
+        newOffer.setSeller(userRepository.findById(ownerId).orElseThrow());
 
         return modelMapper.map(offerRepository.save(newOffer), OfferAddServiceModel.class);
     }

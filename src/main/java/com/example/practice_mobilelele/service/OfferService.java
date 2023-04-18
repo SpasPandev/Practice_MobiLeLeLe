@@ -19,5 +19,5 @@ public interface OfferService {
     void deleteOffer(Long id);
 
 
-    OfferAddServiceModel addOffer(OfferAddServiceModel offerAddServiceModel);
+    OfferAddServiceModel addOffer(OfferAddServiceModel offerAddServiceModel, Long ownerId);
 }

@@ -43,10 +43,11 @@ public class ApplicationUserDetailsServiceImpl implements UserDetailsService {
                 new SimpleGrantedAuthority("ROLE_" + user.getRole().getRole().name()));
 
         /*  User is the spring implementation of UserDetails interface. */
-        return new org.springframework.security.core.userdetails.User(
+        return new ApplicationUser(
                 user.getUsername(),
                 user.getPassword(),
                 authorities
-        );
+        )
+                .setId(user.getId());
     }
 }
