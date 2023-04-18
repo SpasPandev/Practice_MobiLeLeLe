@@ -40,7 +40,7 @@ public class ApplicationUserDetailsServiceImpl implements UserDetailsService {
             which spring provide for our convenience.
             Our representation of role is (Role).   */
         List<GrantedAuthority> authorities = Collections.singletonList(
-                new SimpleGrantedAuthority("Role_" + user.getRole().getRole().name()));
+                new SimpleGrantedAuthority("ROLE_" + user.getRole().getRole().name()));
 
         /*  User is the spring implementation of UserDetails interface. */
         return new org.springframework.security.core.userdetails.User(
