@@ -28,7 +28,8 @@ public class ApplicationSecurityConfiguration {
                 /*  with this line we allow access to all static resources (images, CSS, js)  */
                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                 /*  the next line allow access to the home page, login page and registration for everyone   */
-                .requestMatchers("/", "/users/login", "/users/register", "/offers/all").permitAll()
+                .requestMatchers("/", "/users/login", "/users/register", "/offers/all",
+                        "/users/login-error").permitAll()
                 /*  next we forbid all other pages for unauthenticated users.   */
                 .anyRequest().authenticated()
                 .and()

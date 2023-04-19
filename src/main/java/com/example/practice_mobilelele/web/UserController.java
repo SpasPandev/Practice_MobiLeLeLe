@@ -3,6 +3,7 @@ package com.example.practice_mobilelele.web;
 import com.example.practice_mobilelele.model.binding.UserRegisterBindingModel;
 import com.example.practice_mobilelele.service.UserService;
 import jakarta.validation.Valid;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,6 +29,17 @@ public class UserController {
     public String login() {
 
         return "auth-login";
+    }
+
+    @PostMapping("/users/login-error")
+    public String failedLogin(
+            @ModelAttribute(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_USERNAME_KEY) String username,
+            RedirectAttributes redirectAttributes) {
+
+        redirectAttributes.addFlashAttribute("bad_credentials", true);
+        redirectAttributes.addFlashAttribute("username", username);
+
+        return "redirect:/users/login";
     }
 
     @GetMapping("/users/register")
