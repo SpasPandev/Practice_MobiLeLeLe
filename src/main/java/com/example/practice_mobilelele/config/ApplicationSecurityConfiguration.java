@@ -1,5 +1,6 @@
 package com.example.practice_mobilelele.config;
 
+import com.example.practice_mobilelele.model.enums.RoleEnum;
 import com.example.practice_mobilelele.repository.UserRepository;
 import com.example.practice_mobilelele.service.Impl.ApplicationUserDetailsServiceImpl;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
@@ -30,6 +31,8 @@ public class ApplicationSecurityConfiguration {
                 /*  the next line allow access to the home page, login page and registration for everyone   */
                 .requestMatchers("/", "/users/login", "/users/register", "/offers/all",
                         "/users/login-error").permitAll()
+                /*  we permit the page below only for admin users   */
+                .requestMatchers("/statistics").hasRole(RoleEnum.Admin.name())
                 /*  next we forbid all other pages for unauthenticated users.   */
                 .anyRequest().authenticated()
                 .and()
