@@ -40,9 +40,14 @@ public class OfferServiceImpl implements OfferService {
     }
 
     @Override
-    public OfferDetailsViewModel findById(Long id) {
+    public OfferDetailsViewModel findById(Long id, String currentUser) {
 
-        return modelMapper.map(offerRepository.findById(id).orElse(null), OfferDetailsViewModel.class);
+        OfferDetailsViewModel offerDetailsViewModel = modelMapper
+                .map(offerRepository.findById(id).orElse(null), OfferDetailsViewModel.class);
+
+        offerDetailsViewModel.setCanDelete(isOwner(currentUser, id));
+
+        return offerDetailsViewModel;
     }
 
     @Override

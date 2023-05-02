@@ -12,7 +12,7 @@ public interface OfferService {
 
     List<Offer> getAllOffers();
 
-    OfferDetailsViewModel findById(Long id);
+    OfferDetailsViewModel findById(Long id, String currentUser);
 
     void updateOffer(UpdateOfferServiceModel updateOfferServiceModel);
 

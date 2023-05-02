@@ -44,17 +44,18 @@ public class OfferController {
     }
 
     @GetMapping("/offers/{id}/details")
-    public String offerDetails(@PathVariable Long id, Model model) {
+    public String offerDetails(@PathVariable Long id, Model model, Principal principal) {
 
-        model.addAttribute("offer", offerService.findById(id));
+        model.addAttribute("offer", offerService.findById(id, principal.getName()));
 
         return "details";
     }
 
     @GetMapping("/offers/{id}/update")
-    public String updateOffer(@PathVariable Long id, Model model) {
+    public String updateOffer(@PathVariable Long id, Model model,
+                              @AuthenticationPrincipal ApplicationUser currentUser) {
 
-        OfferDetailsViewModel offerDetailsViewModel = offerService.findById(id);
+        OfferDetailsViewModel offerDetailsViewModel = offerService.findById(id, currentUser.getUsername());
         UpdateOfferBindingModel updateOfferBindingModel = modelMapper.map(offerDetailsViewModel, UpdateOfferBindingModel.class);
 
         model.addAttribute("updateOfferBindingModel", updateOfferBindingModel);

@@ -22,6 +22,7 @@ public class OfferDetailsViewModel {
     private LocalDate modified;
     private Model model;
     private User seller;
+    private boolean canDelete;
 
     public OfferDetailsViewModel() {
     }
@@ -120,5 +121,14 @@ public class OfferDetailsViewModel {
 
     public void setSeller(User seller) {
         this.seller = seller;
+    }
+
+    public boolean isCanDelete() {
+        return canDelete;
+    }
+
+    public OfferDetailsViewModel setCanDelete(boolean canDelete) {
+        this.canDelete = canDelete;
+        return this;
     }
 }
