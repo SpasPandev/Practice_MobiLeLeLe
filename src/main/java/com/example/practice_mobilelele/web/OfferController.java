@@ -12,12 +12,15 @@ import com.example.practice_mobilelele.service.Impl.ApplicationUser;
 import com.example.practice_mobilelele.service.OfferService;
 import jakarta.validation.Valid;
 import org.modelmapper.ModelMapper;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.security.Principal;
 
 @Controller
 public class OfferController {
@@ -87,8 +90,9 @@ public class OfferController {
         return "update";
     }
 
+    @PreAuthorize("@offerServiceImpl.isOwner(#principal.name, #id)")
     @DeleteMapping("/offers/{id}/delete")
-    public String deleteOffer(@PathVariable Long id) {
+    public String deleteOffer(@PathVariable Long id, Principal principal) {
 
         offerService.deleteOffer(id);
 
