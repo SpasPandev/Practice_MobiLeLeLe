@@ -90,7 +90,8 @@ public class OfferController {
         return "update";
     }
 
-    @PreAuthorize("@offerServiceImpl.isOwner(#principal.name, #id)")
+//    @PreAuthorize("@offerServiceImpl.isOwner(#principal.name, #id)")
+    @PreAuthorize("isOwner(#id)")
     @DeleteMapping("/offers/{id}/delete")
     public String deleteOffer(@PathVariable Long id, Principal principal) {
 
