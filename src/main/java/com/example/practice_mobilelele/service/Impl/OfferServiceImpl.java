@@ -105,7 +105,7 @@ public class OfferServiceImpl implements OfferService {
 
             Offer offer = offerOpt.get();
 
-            return isAdmin(callerOpt.get()) || offer.getSeller().getUsername().equalsIgnoreCase(username);
+            return isAdmin(callerOpt.get()) || offer.getSeller().getUsername().equals(username);
         }
     }
 
